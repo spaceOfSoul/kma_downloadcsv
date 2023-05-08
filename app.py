@@ -15,8 +15,8 @@ cheched = False
 ####################################
 #여기에 본인 아이디와 비번을 적어주세요.
 ####################################
-ID = ''
-PW = ''
+ID = 'ychh1123@gmail.com'
+PW = 'gvfatgattwda1!'
 
 class wait_for_display_to_be_none(object):
     def __init__(self, locator):
@@ -104,7 +104,7 @@ months_2022 = [None,(1,31),(2,28),(3,31),(4,30),(5,31),(6,30),(7,31),(8,31),(9,3
 #ex) 다운로드 할 날짜 : 1월, 2월, 3월
 #download_month = [1,2,3]
 ####################################
-download_month = [4,5,6]
+download_month = [9,10]
 
 for i in download_month:
     for j in range(1,months_2022[i][1]+1):
