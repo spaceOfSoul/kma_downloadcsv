@@ -13,7 +13,7 @@ def get_number_from_filename(filename):
 sorted_file_list = sorted(file_list, key=get_number_from_filename)
 
 months_2022 = [None,(1,31),(2,28),(3,31),(4,30),(5,31),(6,30),(7,31),(8,31),(9,30),(10,31),(11,30),(12,31)]
-downloaded_months = [9,10]
+downloaded_months = [4,5,6]
 
 # 월별 일자 생성
 dates = list(chain.from_iterable([[(month, day) for day in range(1, months_2022[month][1] + 1)] for month in downloaded_months]))
