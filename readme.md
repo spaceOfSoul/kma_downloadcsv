@@ -10,4 +10,4 @@ pip install -r requirements.txt
 
 참고: 가상환경을 사용하는 경우, 해당 가상환경을 활성화한 후에 위 명령어를 실행해야 합니다.
 
-데이터 다운로드는 main.py, 파일 이름 변경은 rename.py를 실행하시면 됩니다!
+데이터 다운로드는 `main.py`, 파일 이름 변경은 `rename.py`를 실행하시면 됩니다!
