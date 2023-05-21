@@ -3,8 +3,8 @@ import weather_downloader
 ####################################
 # 여기에 본인 아이디와 비번을 적어주세요.
 ####################################
-weather_downloader.ID = 'ychh1123@gmail.com'
-weather_downloader.PW = 'gvfatgattwda1!'
+weather_downloader.ID = ''
+weather_downloader.PW = ''
 
 ####################################
 # 여기에 다운로드 할 월을 넣어주세요.

@@ -92,10 +92,10 @@ def reset_session_and_cookies(driver):
 def download_month(m):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--ignore-certificate-errors')
-    chrome_options.add_argument("--window-size=1200,600")
 
     driver = webdriver.Chrome()
     
+    driver.set_window_size(1920, 1080) 
     checked = False
 
     login(driver)
