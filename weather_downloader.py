@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import pyperclip
+from selenium.webdriver.common.action_chains import ActionChains
 
 ID = ''
 PW = ''
@@ -33,13 +34,11 @@ def login(driver):
     tg_pw = driver.find_element(By.XPATH, '//*[@id="passwordNo"]')
 
     tg_id.click()
-    pyperclip.copy(ID)
-    tg_id.send_keys(Keys.CONTROL, 'v')
+    tg_id.send_keys(ID) # Here
     time.sleep(1)
 
     tg_pw.click()
-    pyperclip.copy(PW)
-    tg_pw.send_keys(Keys.CONTROL, 'v')
+    tg_pw.send_keys(PW) # And here
     time.sleep(1)
 
     enter_btn = driver.find_element(By.XPATH, '//*[@id="loginbtn"]')
@@ -93,6 +92,7 @@ def reset_session_and_cookies(driver):
 def download_month(m):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--ignore-certificate-errors')
+    chrome_options.add_argument("--window-size=1200,600")
 
     driver = webdriver.Chrome()
     
