@@ -11,7 +11,7 @@ from itertools import chain
 # 4. 이제 스크립트를 실행하면 파일들의 이름이 자동으로 바뀝니다.
 ####################################
 
-downloaded_months = []
+downloaded_months = [1,2,4,5]
 
 directory_path = "./change_name/"
 
@@ -31,5 +31,5 @@ dates = list(chain.from_iterable([[(month, day) for day in range(1, months_2022[
 # 파일 이름 변경
 for filename, date in zip(sorted_file_list, dates):
     month, day = date
-    new_filename = f"asos_gwd_2022{month:02d}{day:02d}.csv"
+    new_filename = f"aws_gwd_2023{month:02d}{day:02d}.csv"
     os.rename(os.path.join(directory_path, filename), os.path.join(directory_path, new_filename))

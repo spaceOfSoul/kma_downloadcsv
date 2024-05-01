@@ -1,3 +1,5 @@
 /change_name
 asos_data(9,10).zip
 asos_data(4,5,6).zip
+*.zip
+.env
