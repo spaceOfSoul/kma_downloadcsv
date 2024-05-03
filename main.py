@@ -11,7 +11,7 @@ load_dotenv()
 weather_downloader.ID = os.getenv('ID')
 weather_downloader.PW = os.getenv('PW')
 weather_downloader.URL = os.getenv('URL')
-weather_downloader.PATH = os.getenv('PATH')
+weather_downloader.PATH = os.getenv('directory')
 
 ####################################
 # 여기에 다운로드 할 월을 넣어주세요.

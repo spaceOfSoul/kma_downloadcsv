@@ -1,6 +1,7 @@
 import os
 import re
 from itertools import chain
+import pandas as pd
 
 ####################################
 # 1. 이름을 change_name으로 하는 폴더를 하나 만들어주세요.
@@ -11,7 +12,7 @@ from itertools import chain
 # 4. 이제 스크립트를 실행하면 파일들의 이름이 자동으로 바뀝니다.
 ####################################
 
-downloaded_months = [1,2,4,5]
+downloaded_months = [1]
 
 directory_path = "./change_name/"
 
@@ -29,7 +30,14 @@ months_2022 = [None,(1,31),(2,28),(3,31),(4,30),(5,31),(6,30),(7,31),(8,31),(9,3
 dates = list(chain.from_iterable([[(month, day) for day in range(1, months_2022[month][1] + 1)] for month in downloaded_months]))
 
 # 파일 이름 변경
-for filename, date in zip(sorted_file_list, dates):
-    month, day = date
-    new_filename = f"aws_gwd_2023{month:02d}{day:02d}.csv"
+for filename in sorted_file_list:
+    file_path = os.path.join(directory_path, filename)
+    df = pd.read_csv(file_path, encoding='cp949')
+
+    first_date = df['일시'].iloc[0]
+    
+    date_parsed = pd.to_datetime(first_date)
+    date_format = date_parsed.strftime('%Y%m%d')
+
+    new_filename = new_filename = f"aws_gwd_{date_format}.csv"
     os.rename(os.path.join(directory_path, filename), os.path.join(directory_path, new_filename))

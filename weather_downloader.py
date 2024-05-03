@@ -101,6 +101,7 @@ def reset_session_and_cookies(driver):
     driver.delete_all_cookies()
     driver.refresh()
 
+
 def download_month(m):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--ignore-certificate-errors')
@@ -120,16 +121,19 @@ def download_month(m):
     checked = False
 
     login(driver)
+    time.sleep(1)
     readyToDownload(driver)
 
     months_2023 = [None,(1,31),(2,28),(3,31),(4,30),(5,31),(6,30),(7,31),(8,31),(9,30),(10,31),(11,30),(12,31)]
 
     download_month = [m]
 
+    time.sleep(1)
+
     for i in download_month:
-        files = os.listdir(PATH)
-        file_count = len(files)
         for j in range(1,months_2023[i][1]+1):
+            files = os.listdir(PATH)
+            file_count = len(files)
             re = True
             while re:
                 print(f"{i}월 {j}일")
@@ -140,7 +144,9 @@ def download_month(m):
                         try:
                             reset_session_and_cookies(driver)
                             login(driver)
+                            time.sleep(1)
                             readyToDownload(driver)
+                            print('re login')
                             break
                         except:
                             time.sleep(1)
@@ -148,30 +154,39 @@ def download_month(m):
                         
                 try:
                     download(driver,i,j)
+                    time.sleep(1)
+                    #//*[@id="loading-mask"]
+                    while True:
+                        try:
+                            WebDriverWait(driver, 120).until(wait_for_display_to_be_none((By.XPATH, '//*[@id="loading-mask"]')))
+                            break
+                        except:
+                            continue
                 except:
                     while True:
                         try:
                             reset_session_and_cookies(driver)
                             login(driver)
+                            time.sleep(1)
                             readyToDownload(driver)
+                            print('re login')
                         except:
                             time.sleep(1)
                             continue
+                        time.sleep(1)
                         try:
                             download(driver,i,j)
-                            break
+                            time.sleep(1)
+                            while True:
+                                try:
+                                    WebDriverWait(driver, 120).until(wait_for_display_to_be_none((By.XPATH, '//*[@id="loading-mask"]')))
+                                    break
+                                except:
+                                    continue
                         except:
                             time.sleep(1)
                             continue
                 time.sleep(1)
-
-                #//*[@id="loading-mask"]
-                while True:
-                    try:
-                        WebDriverWait(driver, 120).until(wait_for_display_to_be_none((By.XPATH, '//*[@id="loading-mask"]')))
-                        break
-                    except:
-                        continue
 
                 if not checked:
                     WebDriverWait(driver, 120).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="reqstPurposeCd7"]')))
@@ -186,7 +201,8 @@ def download_month(m):
 
                 files = os.listdir(PATH)
                 current_file_count = len(files)
-
+                print("old : ", file_count)
+                print("current : ",current_file_count)
                 if current_file_count > file_count:
                     re = False
 
